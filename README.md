@@ -7,6 +7,7 @@ Questo progetto è un’applicazione **Spring Boot** che espone **REST API** per
 ## Database
 - **Database:** PostgreSQL  
 - **Nome database:** `LuxuryWatches`
+- **Nota:** Alcuni dati numerici (come prezzi o misure) sono memorizzati come **VARCHAR** invece che come tipi numerici. Questo può influenzare operazioni come ordinamento o calcoli diretti nel database.
 
 ---
 
