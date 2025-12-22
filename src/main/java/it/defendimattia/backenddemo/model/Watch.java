@@ -1,5 +1,6 @@
 package it.defendimattia.backenddemo.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -10,7 +11,7 @@ import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "LuxuryWatches")
+@Table(name = "luxury_watches")
 public class Watch {
 
     @Id
@@ -19,66 +20,63 @@ public class Watch {
 
     @NotBlank(message = "brand cannot be empty")
     @Size(max = 250, message = "brand must be max 250 characters long")
+    @Column(name = "\"Brand\"")
     private String brand;
 
     @NotBlank(message = "model cannot be empty")
     @Size(max = 250, message = "model must be max 250 characters long")
+    @Column(name = "\"Model\"")
     private String model;
 
     @Size(max = 250, message = "case material must be max 250 characters long")
+    @Column(name = "\"Case Material\"")
     private String caseMaterial;
 
     @Size(max = 250, message = "strap material must be max 250 characters long")
+    @Column(name = "\"Strap Material\"")
     private String strapMaterial;
 
     @Size(max = 250, message = "movement type must be max 250 characters long")
+    @Column(name = "\"Movement Type\"")
     private String movementType;
 
     @Size(max = 250, message = "water resistance must be max 250 characters long")
+    @Column(name = "\"Water Resistance\"")
     private String waterResistance;
 
     @Positive(message = "case diameter must be greater than 0")
+    @Column(name = "\"Case Diameter (mm)\"")
     private double caseDiameter;
 
     @Positive(message = "case thickness must be greater than 0")
+    @Column(name = "\"Case Thickness (mm)\"")
     private double caseThickness;
 
     @Positive(message = "band width must be greater than 0")
+    @Column(name = "\"Band Width (mm)\"")
     private double bandWidth;
 
     @Size(max = 250, message = "dial color must be max 250 characters long")
+    @Column(name = "\"Dial Color\"")
     private String dialColor;
 
     @Size(max = 250, message = "crystal material must be max 250 characters long")
+    @Column(name = "\"Crystal Material\"")
     private String crystalMaterial;
 
     @Size(max = 400, message = "complications must be max 400 characters long")
+    @Column(name = "\"Complications\"")
     private String complications;
 
     @Size(max = 250, message = "power reserve must be max 250 characters long")
+    @Column(name = "\"Power Reserve\"")
     private String powerReserve;
 
     @Size(max = 12, message = "price must be max 12 characters long")
+    @Column(name = "\"Price (USD)\"")
     private String price;
 
-    public Watch(Integer id, String brand, String model, String caseMaterial, String strapMaterial, String movementType,
-            String waterResistance, double caseDiameter, double caseThickness, double bandWidth, String dialColor,
-            String crystalMaterial, String complications, String powerReserve, String price) {
-        this.id = id;
-        this.brand = brand;
-        this.model = model;
-        this.caseMaterial = caseMaterial;
-        this.strapMaterial = strapMaterial;
-        this.movementType = movementType;
-        this.waterResistance = waterResistance;
-        this.caseDiameter = caseDiameter;
-        this.caseThickness = caseThickness;
-        this.bandWidth = bandWidth;
-        this.dialColor = dialColor;
-        this.crystalMaterial = crystalMaterial;
-        this.complications = complications;
-        this.powerReserve = powerReserve;
-        this.price = price;
+    public Watch() {
     }
 
     public Integer getId() {
