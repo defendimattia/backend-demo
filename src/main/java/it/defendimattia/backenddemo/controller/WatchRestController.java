@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.defendimattia.backenddemo.model.Watch;
-import it.defendimattia.backenddemo.repository.WatchRepository;
+import it.defendimattia.backenddemo.service.WatchService;
+
 import org.springframework.web.bind.annotation.GetMapping;
 
 @RestController
@@ -15,11 +16,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class WatchRestController {
 
     @Autowired
-    private WatchRepository watchRepo;
+    private WatchService watchService;
 
     @GetMapping
     public List<Watch> index() {
-        return watchRepo.findAll();
+        return watchService.getAllWatches();
     }
 
 }
