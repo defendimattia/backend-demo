@@ -40,9 +40,9 @@ public class Watch {
     @Column(name = "\"Movement Type\"")
     private String movementType;
 
-    @Size(max = 250, message = "water resistance must be max 250 characters long")
-    @Column(name = "\"Water Resistance\"")
-    private String waterResistance;
+    //
+    @Column(name = "\"Water Resistance (meters)\"")
+    private Short waterResistance;
 
     @Positive(message = "case diameter must be greater than 0")
     @Column(name = "\"Case Diameter (mm)\"")
@@ -68,13 +68,13 @@ public class Watch {
     @Column(name = "\"Complications\"")
     private String complications;
 
-    @Size(max = 250, message = "power reserve must be max 250 characters long")
-    @Column(name = "\"Power Reserve\"")
-    private String powerReserve;
+    //
+    @Column(name = "\"Power Reserve (hours)\"")
+    private Short powerReserve;
 
-    @Size(max = 12, message = "price must be max 12 characters long")
+    //
     @Column(name = "\"Price (USD)\"")
-    private String price;
+    private Integer price;
 
     public Watch() {
     }
@@ -127,11 +127,11 @@ public class Watch {
         this.movementType = movementType;
     }
 
-    public String getWaterResistance() {
+    public Short getWaterResistance() {
         return this.waterResistance;
     }
 
-    public void setWaterResistance(String waterResistance) {
+    public void setWaterResistance(Short waterResistance) {
         this.waterResistance = waterResistance;
     }
 
@@ -183,19 +183,19 @@ public class Watch {
         this.complications = complications;
     }
 
-    public String getPowerReserve() {
+    public Short getPowerReserve() {
         return this.powerReserve;
     }
 
-    public void setPowerReserve(String powerReserve) {
+    public void setPowerReserve(Short powerReserve) {
         this.powerReserve = powerReserve;
     }
 
-    public String getPrice() {
+    public Integer getPrice() {
         return this.price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 
