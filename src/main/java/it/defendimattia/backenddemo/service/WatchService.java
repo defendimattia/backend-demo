@@ -31,4 +31,8 @@ public class WatchService {
 
         return watchTry.get();
     }
+
+    public List<Watch> searchByBrand(String query) {
+        return watchRepo.findByBrandIgnoreCaseContaining(query);
+    }
 }
