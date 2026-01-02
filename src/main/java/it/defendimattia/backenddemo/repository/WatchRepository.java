@@ -31,4 +31,10 @@ public interface WatchRepository extends JpaRepository<Watch, Integer> {
     public List<Watch> findByCaseThicknessGreaterThanEqual(Double diameter);
 
     public List<Watch> findByCaseThicknessLessThanEqual(Double diameter);
+
+    public List<Watch> findByBandWidthGreaterThanEqualAndCaseDiameterLessThan(Double min, Double max);
+
+    public List<Watch> findByBandWidthGreaterThanEqual(Double diameter);
+
+    public List<Watch> findByBandWidthLessThanEqual(Double diameter);
 }

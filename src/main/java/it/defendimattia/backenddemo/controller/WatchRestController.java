@@ -106,4 +106,22 @@ public class WatchRestController {
         return watchService.searchByCaseThicknessLess(query);
     }
 
+    @GetMapping("/searchByBandWidthEquals")
+    public List<Watch> searchBandWidthEquals(@RequestParam(name = "query") Double query) {
+
+        return watchService.searchByBandWidthEquals(query);
+    }
+
+    @GetMapping("/searchByBandWidthGreater")
+    public List<Watch> searchBandWidthGreater(@RequestParam(name = "query") Double query) {
+
+        return watchService.searchByBandWidthGreater(query);
+    }
+
+    @GetMapping("/searchByBandWidthLess")
+    public List<Watch> searchBandWidthLess(@RequestParam(name = "query") Double query) {
+
+        return watchService.searchByBandWidthLess(query);
+    }
+
 }
