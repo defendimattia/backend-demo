@@ -1,7 +1,6 @@
 package it.defendimattia.backenddemo.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -36,9 +35,27 @@ public class WatchRestController {
     }
 
     @GetMapping("/searchByBrand")
-    public List<Watch> search(@RequestParam(name = "query") String query) {
+    public List<Watch> searchBrand(@RequestParam(name = "query") String query) {
 
         return watchService.searchByBrand(query);
+    }
+
+    @GetMapping("/searchByModel")
+    public List<Watch> searchModel(@RequestParam(name = "query") String query) {
+
+        return watchService.searchByModel(query);
+    }
+
+    @GetMapping("/searchByCaseMaterial")
+    public List<Watch> searchCaseMaterial(@RequestParam(name = "query") String query) {
+
+        return watchService.searchByCaseMaterial(query);
+    }
+
+    @GetMapping("/searchByStrapMaterial")
+    public List<Watch> searchStrapMaterial(@RequestParam(name = "query") String query) {
+
+        return watchService.searchByStrapMaterial(query);
     }
 
 }

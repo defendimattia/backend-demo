@@ -35,4 +35,16 @@ public class WatchService {
     public List<Watch> searchByBrand(String query) {
         return watchRepo.findByBrandIgnoreCaseContaining(query);
     }
+
+    public List<Watch> searchByModel(String query) {
+        return watchRepo.findByModelIgnoreCaseContaining(query);
+    }
+
+    public List<Watch> searchByCaseMaterial(String query) {
+        return watchRepo.findByCaseMaterialIgnoreCaseContaining(query);
+    }
+
+    public List<Watch> searchByStrapMaterial(String query) {
+        return watchRepo.findByStrapMaterialIgnoreCaseContaining(query);
+    }
 }

@@ -40,7 +40,6 @@ public class Watch {
     @Column(name = "\"Movement Type\"")
     private String movementType;
 
-    //
     @Column(name = "\"Water Resistance (meters)\"")
     private Short waterResistance;
 
@@ -68,11 +67,9 @@ public class Watch {
     @Column(name = "\"Complications\"")
     private String complications;
 
-    //
     @Column(name = "\"Power Reserve (hours)\"")
     private Short powerReserve;
 
-    //
     @Column(name = "\"Price (USD)\"")
     private Integer price;
 
