@@ -52,7 +52,19 @@ public class WatchService {
         return watchRepo.findByMovementTypeIgnoreCaseContaining(query);
     }
 
-    public List<Watch> searchByWaterResistance(String query) {
+    public List<Watch> searchByWaterResistance(Short query) {
         return watchRepo.findByWaterResistanceGreaterThanEqual(query);
+    }
+
+    public List<Watch> searchByCaseDiameterEquals(Double query) {
+
+        double min = query;
+        double max = query + 1;
+
+        return watchRepo.findByCaseDiameterGreaterThanEqualAndCaseDiameterLessThan(min, max);
+    }
+
+    public List<Watch> searchByCaseDiameterGreater(Double query) {
+        return watchRepo.findByCaseDiameterGreaterThanEqual(query);
     }
 }

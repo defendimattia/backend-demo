@@ -65,9 +65,21 @@ public class WatchRestController {
     }
 
     @GetMapping("/searchByWaterResistance")
-    public List<Watch> searchWaterResistance(@RequestParam(name = "query") String query) {
+    public List<Watch> searchWaterResistance(@RequestParam(name = "query") Short query) {
 
         return watchService.searchByWaterResistance(query);
+    }
+
+    @GetMapping("/searchByCaseDiameterEquals")
+    public List<Watch> searchCaseDiameterEquals(@RequestParam(name = "query") Double query) {
+
+        return watchService.searchByCaseDiameterEquals(query);
+    }
+
+    @GetMapping("/searchByCaseDiameterGreater")
+    public List<Watch> searchCaseDiameterGreater(@RequestParam(name = "query") Double query) {
+
+        return watchService.searchByCaseDiameterGreater(query);
     }
 
 }
