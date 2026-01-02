@@ -124,4 +124,24 @@ public class WatchRestController {
         return watchService.searchByBandWidthLess(query);
     }
 
+    @GetMapping("/searchByDialColor")
+    public List<Watch> searchDialColor(@RequestParam(name = "query") String query) {
+        return watchService.searchByDialColor(query);
+    }
+
+    @GetMapping("/searchByCrystalMaterial")
+    public List<Watch> searchCrystalMaterial(@RequestParam(name = "query") String query) {
+        return watchService.searchByCrystalMaterial(query);
+    }
+
+    @GetMapping("/searchByComplications")
+    public List<Watch> searchComplications(@RequestParam(name = "query") String query) {
+        return watchService.searchByComplications(query);
+    }
+
+    @GetMapping("/searchByPowerReserve")
+    public List<Watch> searchPowerReserve(@RequestParam(name = "query") Short query) {
+        return watchService.searchByPowerReserve(query);
+    }
+
 }

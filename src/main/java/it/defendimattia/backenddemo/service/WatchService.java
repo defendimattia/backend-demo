@@ -103,4 +103,20 @@ public class WatchService {
     public List<Watch> searchByBandWidthLess(Double query) {
         return watchRepo.findByBandWidthLessThanEqual(query);
     }
+
+    public List<Watch> searchByDialColor(String query) {
+        return watchRepo.findByDialColorIgnoreCaseContaining(query);
+    }
+
+    public List<Watch> searchByCrystalMaterial(String query) {
+        return watchRepo.findByCrystalMaterialIgnoreCaseContaining(query);
+    }
+
+    public List<Watch> searchByComplications(String query) {
+        return watchRepo.findByComplicationsIgnoreCaseContaining(query);
+    }
+
+    public List<Watch> searchByPowerReserve(Short query) {
+        return watchRepo.findByPowerReserveGreaterThanEqual(query);
+    }
 }

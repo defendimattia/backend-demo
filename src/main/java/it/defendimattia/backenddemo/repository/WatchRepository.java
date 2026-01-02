@@ -28,13 +28,22 @@ public interface WatchRepository extends JpaRepository<Watch, Integer> {
 
     public List<Watch> findByCaseThicknessGreaterThanEqualAndCaseDiameterLessThan(Double min, Double max);
 
-    public List<Watch> findByCaseThicknessGreaterThanEqual(Double diameter);
+    public List<Watch> findByCaseThicknessGreaterThanEqual(Double caseThickness);
 
-    public List<Watch> findByCaseThicknessLessThanEqual(Double diameter);
+    public List<Watch> findByCaseThicknessLessThanEqual(Double caseThickness);
 
     public List<Watch> findByBandWidthGreaterThanEqualAndCaseDiameterLessThan(Double min, Double max);
 
-    public List<Watch> findByBandWidthGreaterThanEqual(Double diameter);
+    public List<Watch> findByBandWidthGreaterThanEqual(Double bandWidth);
 
-    public List<Watch> findByBandWidthLessThanEqual(Double diameter);
+    public List<Watch> findByBandWidthLessThanEqual(Double bandWidth);
+
+    public List<Watch> findByDialColorIgnoreCaseContaining(String dialColor);
+
+    public List<Watch> findByCrystalMaterialIgnoreCaseContaining(String crystalMaterial);
+
+    public List<Watch> findByComplicationsIgnoreCaseContaining(String complications);
+
+    public List<Watch> findByPowerReserveGreaterThanEqual(Short powerReserve);
+
 }
