@@ -82,4 +82,10 @@ public class WatchRestController {
         return watchService.searchByCaseDiameterGreater(query);
     }
 
+    @GetMapping("/searchByCaseDiameterLess")
+    public List<Watch> searchCaseDiameterLess(@RequestParam(name = "query") Double query) {
+
+        return watchService.searchByCaseDiameterLess(query);
+    }
+
 }
