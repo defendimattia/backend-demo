@@ -88,4 +88,22 @@ public class WatchRestController {
         return watchService.searchByCaseDiameterLess(query);
     }
 
+    @GetMapping("/searchByCaseThicknessEquals")
+    public List<Watch> searchCaseThicknessEquals(@RequestParam(name = "query") Double query) {
+
+        return watchService.searchByCaseThicknessEquals(query);
+    }
+
+    @GetMapping("/searchByCaseThicknessGreater")
+    public List<Watch> searchCaseThicknessGreater(@RequestParam(name = "query") Double query) {
+
+        return watchService.searchByCaseThicknessGreater(query);
+    }
+
+    @GetMapping("/searchByCaseThicknessLess")
+    public List<Watch> searchCaseThicknessLess(@RequestParam(name = "query") Double query) {
+
+        return watchService.searchByCaseThicknessLess(query);
+    }
+
 }
