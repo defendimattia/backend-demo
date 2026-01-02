@@ -47,4 +47,12 @@ public class WatchService {
     public List<Watch> searchByStrapMaterial(String query) {
         return watchRepo.findByStrapMaterialIgnoreCaseContaining(query);
     }
+
+    public List<Watch> searchByMovementType(String query) {
+        return watchRepo.findByMovementTypeIgnoreCaseContaining(query);
+    }
+
+    public List<Watch> searchByWaterResistance(String query) {
+        return watchRepo.findByWaterResistanceGreaterThanEqual(query);
+    }
 }

@@ -15,4 +15,8 @@ public interface WatchRepository extends JpaRepository<Watch, Integer> {
     public List<Watch> findByCaseMaterialIgnoreCaseContaining(String model);
 
     public List<Watch> findByStrapMaterialIgnoreCaseContaining(String model);
+
+    public List<Watch> findByMovementTypeIgnoreCaseContaining(String model);
+
+    public List<Watch> findByWaterResistanceGreaterThanEqual(String model);
 }

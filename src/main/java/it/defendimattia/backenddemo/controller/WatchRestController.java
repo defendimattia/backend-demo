@@ -58,4 +58,16 @@ public class WatchRestController {
         return watchService.searchByStrapMaterial(query);
     }
 
+    @GetMapping("/searchByMovementType")
+    public List<Watch> searchMovementType(@RequestParam(name = "query") String query) {
+
+        return watchService.searchByMovementType(query);
+    }
+
+    @GetMapping("/searchByWaterResistance")
+    public List<Watch> searchWaterResistance(@RequestParam(name = "query") String query) {
+
+        return watchService.searchByWaterResistance(query);
+    }
+
 }
