@@ -119,4 +119,8 @@ public class WatchService {
     public List<Watch> searchByPowerReserve(Short query) {
         return watchRepo.findByPowerReserveGreaterThanEqual(query);
     }
+
+    public List<Watch> searchByPrice(Integer query) {
+        return watchRepo.findByPriceLessThanEqual(query);
+    }
 }

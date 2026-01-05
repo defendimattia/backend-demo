@@ -144,4 +144,9 @@ public class WatchRestController {
         return watchService.searchByPowerReserve(query);
     }
 
+    @GetMapping("/searchByPrice")
+    public List<Watch> searchPrice(@RequestParam(name = "query") Integer query) {
+        return watchService.searchByPrice(query);
+    }
+
 }

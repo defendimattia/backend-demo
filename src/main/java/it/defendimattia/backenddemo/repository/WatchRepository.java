@@ -46,4 +46,6 @@ public interface WatchRepository extends JpaRepository<Watch, Integer> {
 
     public List<Watch> findByPowerReserveGreaterThanEqual(Short powerReserve);
 
+    public List<Watch> findByPriceLessThanEqual(Integer bprice);
+
 }
