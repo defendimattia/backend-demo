@@ -77,7 +77,7 @@ public class WatchService {
         double min = query;
         double max = query + 1;
 
-        return watchRepo.findByCaseThicknessGreaterThanEqualAndCaseDiameterLessThan(min, max);
+        return watchRepo.findByCaseThicknessGreaterThanEqualAndCaseThicknessLessThan(min, max);
     }
 
     public List<Watch> searchByCaseThicknessGreater(Double query) {
@@ -93,11 +93,11 @@ public class WatchService {
         double min = query;
         double max = query + 1;
 
-        return watchRepo.findByBandWidthGreaterThanEqualAndCaseDiameterLessThan(min, max);
+        return watchRepo.findByBandWidthGreaterThanEqualAndBandWidthLessThan(min, max);
     }
 
     public List<Watch> searchByBandWidthGreater(Double query) {
-        return watchRepo.findByCaseThicknessGreaterThanEqual(query);
+        return watchRepo.findByBandWidthGreaterThanEqual(query);
     }
 
     public List<Watch> searchByBandWidthLess(Double query) {
