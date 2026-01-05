@@ -145,8 +145,8 @@ public class WatchRestController {
     }
 
     @GetMapping("/searchByPrice")
-    public List<Watch> searchPrice(@RequestParam(name = "query") Integer query) {
-        return watchService.searchByPrice(query);
+    public List<Watch> searchPriceMax(@RequestParam(name = "query") Integer query) {
+        return watchService.searchByPriceMax(query);
     }
 
 }

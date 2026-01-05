@@ -120,7 +120,7 @@ public class WatchService {
         return watchRepo.findByPowerReserveGreaterThanEqual(query);
     }
 
-    public List<Watch> searchByPrice(Integer query) {
+    public List<Watch> searchByPriceMax(Integer query) {
         return watchRepo.findByPriceLessThanEqual(query);
     }
 }
