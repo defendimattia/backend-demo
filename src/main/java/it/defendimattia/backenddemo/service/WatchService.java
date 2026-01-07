@@ -4,12 +4,14 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import it.defendimattia.backenddemo.model.Watch;
 import it.defendimattia.backenddemo.repository.WatchRepository;
+import it.defendimattia.backenddemo.specification.WatchSpecification;
 
 @Service
 public class WatchService {
@@ -30,6 +32,42 @@ public class WatchService {
         }
 
         return watchTry.get();
+    }
+
+    public List<Watch> search(String brand,
+            String model,
+            String caseMaterial,
+            String strapMaterial,
+            String movementType,
+            Short waterResistance,
+            Double caseDiameter,
+            Double caseThickness,
+            Double bandWidth,
+            String dialColor,
+            String crystalMaterial,
+            String complications,
+            Short powerReserve,
+            Integer maxPrice) {
+
+        Specification<Watch> spec = Specification.where(WatchSpecification.brandContains(brand))
+                .and(WatchSpecification.modelContains(model))
+                .and(WatchSpecification.caseMaterialContains(caseMaterial))
+                .and(WatchSpecification.strapMaterialContains(strapMaterial))
+                .and(WatchSpecification.movementTypeContains(movementType))
+                .and(WatchSpecification.waterResistanceGreaterThanEqual(waterResistance))
+                .and(WatchSpecification.caseDiameterGreaterThanEqual(caseDiameter))
+                .and(WatchSpecification.caseDiameterLessThan(caseDiameter == null ? null : caseDiameter + 1))
+                .and(WatchSpecification.caseThicknessGreaterThanEqual(caseThickness))
+                .and(WatchSpecification.caseThicknessLessThanEqual(caseThickness))
+                .and(WatchSpecification.bandWidthGreaterThanEqual(bandWidth))
+                .and(WatchSpecification.bandWidthLessThanEqual(bandWidth))
+                .and(WatchSpecification.dialColorContains(dialColor))
+                .and(WatchSpecification.crystalMaterialContains(crystalMaterial))
+                .and(WatchSpecification.complicationsContains(complications))
+                .and(WatchSpecification.powerReserveGreaterThanEqual(powerReserve))
+                .and(WatchSpecification.priceLessThanEqual(maxPrice));
+
+        return watchRepo.findAll(spec);
     }
 
 }
