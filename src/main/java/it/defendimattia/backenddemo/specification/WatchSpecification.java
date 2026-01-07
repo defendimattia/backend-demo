@@ -70,7 +70,7 @@ public class WatchSpecification {
         };
     }
 
-    public static Specification<Watch> waterResistanceGreaterThanLike(Short waterResistance) {
+    public static Specification<Watch> waterResistanceGreaterThanEqual(Short waterResistance) {
         return (root, query, cb) -> {
 
             if (waterResistance == null) {
@@ -81,16 +81,23 @@ public class WatchSpecification {
         };
     }
 
-    public static Specification<Watch> caseDiameterLike(Double min, Double max) {
+    public static Specification<Watch> caseDiameterGreaterThanEqual(Double min) {
         return (root, query, cb) -> {
 
-            if (min == null || max == null) {
+            if (min == null)
                 return null;
-            }
 
-            return cb.and(
-                    cb.greaterThanOrEqualTo(root.get("caseDiameter"), min),
-                    cb.lessThanOrEqualTo(root.get("caseDiameter"), max));
+            return cb.greaterThanOrEqualTo(root.get("caseDiameter"), min);
+        };
+    }
+
+    public static Specification<Watch> caseDiameterLessThan(Double max) {
+        return (root, query, cb) -> {
+
+            if (max == null)
+                return null;
+
+            return cb.lessThan(root.get("caseDiameter"), max);
         };
     }
 
@@ -160,7 +167,7 @@ public class WatchSpecification {
         };
     }
 
-    public static Specification<Watch> dialColorContaining(String dialColor) {
+    public static Specification<Watch> dialColorContains(String dialColor) {
         return (root, query, cb) -> {
 
             if (dialColor == null) {
@@ -173,7 +180,7 @@ public class WatchSpecification {
         };
     }
 
-    public static Specification<Watch> crystalMaterialContaining(String crystalMaterial) {
+    public static Specification<Watch> crystalMaterialContains(String crystalMaterial) {
         return (root, query, cb) -> {
 
             if (crystalMaterial == null) {
@@ -186,7 +193,7 @@ public class WatchSpecification {
         };
     }
 
-    public static Specification<Watch> complicationsContaining(String complications) {
+    public static Specification<Watch> complicationsContains(String complications) {
         return (root, query, cb) -> {
 
             if (complications == null) {
@@ -210,7 +217,7 @@ public class WatchSpecification {
         };
     }
 
-    public static Specification<Watch> priceGreaterThanEqual(Integer price) {
+    public static Specification<Watch> priceLessThanEqual(Integer price) {
         return (root, query, cb) -> {
 
             if (price == null) {
