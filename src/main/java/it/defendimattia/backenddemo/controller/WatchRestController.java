@@ -1,5 +1,6 @@
 package it.defendimattia.backenddemo.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,9 +43,9 @@ public class WatchRestController {
             @RequestParam(required = false) String strapMaterial,
             @RequestParam(required = false) String movementType,
             @RequestParam(required = false) Short waterResistance,
-            @RequestParam(required = false) Double caseDiameter,
-            @RequestParam(required = false) Double caseThickness,
-            @RequestParam(required = false) Double bandWidth,
+            @RequestParam(required = false) BigDecimal caseDiameter,
+            @RequestParam(required = false) BigDecimal caseThickness,
+            @RequestParam(required = false) BigDecimal bandWidth,
             @RequestParam(required = false) String dialColor,
             @RequestParam(required = false) String crystalMaterial,
             @RequestParam(required = false) String complications,

@@ -59,7 +59,7 @@ public class Watch {
     private BigDecimal caseThickness;
 
     @Positive(message = "band width must be greater than 0")
-    @Digits(integer = 2, fraction = 1)
+    @Digits(integer = 2, fraction = 0)
     @Column(name = "\"Band Width (mm)\"")
     private BigDecimal bandWidth;
 

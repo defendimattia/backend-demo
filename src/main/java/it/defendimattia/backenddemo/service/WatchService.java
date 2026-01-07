@@ -1,5 +1,6 @@
 package it.defendimattia.backenddemo.service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,9 +41,9 @@ public class WatchService {
             String strapMaterial,
             String movementType,
             Short waterResistance,
-            Double caseDiameter,
-            Double caseThickness,
-            Double bandWidth,
+            BigDecimal caseDiameter,
+            BigDecimal caseThickness,
+            BigDecimal bandWidth,
             String dialColor,
             String crystalMaterial,
             String complications,
@@ -56,7 +57,8 @@ public class WatchService {
                 .and(WatchSpecification.movementTypeContains(movementType))
                 .and(WatchSpecification.waterResistanceGreaterThanEqual(waterResistance))
                 .and(WatchSpecification.caseDiameterGreaterThanEqual(caseDiameter))
-                .and(WatchSpecification.caseDiameterLessThan(caseDiameter == null ? null : caseDiameter + 1))
+                .and(WatchSpecification
+                        .caseDiameterLessThan(caseDiameter == null ? null : caseDiameter.add(BigDecimal.ONE)))
                 .and(WatchSpecification.caseThicknessGreaterThanEqual(caseThickness))
                 .and(WatchSpecification.caseThicknessLessThanEqual(caseThickness))
                 .and(WatchSpecification.bandWidthGreaterThanEqual(bandWidth))

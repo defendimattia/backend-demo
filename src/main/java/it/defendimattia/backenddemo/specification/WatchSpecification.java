@@ -1,5 +1,7 @@
 package it.defendimattia.backenddemo.specification;
 
+import java.math.BigDecimal;
+
 import org.springframework.data.jpa.domain.Specification;
 
 import it.defendimattia.backenddemo.model.Watch;
@@ -81,7 +83,7 @@ public class WatchSpecification {
         };
     }
 
-    public static Specification<Watch> caseDiameterGreaterThanEqual(Double min) {
+    public static Specification<Watch> caseDiameterGreaterThanEqual(BigDecimal min) {
         return (root, query, cb) -> {
 
             if (min == null)
@@ -91,7 +93,7 @@ public class WatchSpecification {
         };
     }
 
-    public static Specification<Watch> caseDiameterLessThan(Double max) {
+    public static Specification<Watch> caseDiameterLessThan(BigDecimal max) {
         return (root, query, cb) -> {
 
             if (max == null)
@@ -101,7 +103,7 @@ public class WatchSpecification {
         };
     }
 
-    public static Specification<Watch> diameterGreaterThanEqual(Double diameter) {
+    public static Specification<Watch> diameterGreaterThanEqual(BigDecimal diameter) {
         return (root, query, cb) -> {
 
             if (diameter == null) {
@@ -112,7 +114,7 @@ public class WatchSpecification {
         };
     }
 
-    public static Specification<Watch> diameterLessThanEqual(Double diameter) {
+    public static Specification<Watch> diameterLessThanEqual(BigDecimal diameter) {
         return (root, query, cb) -> {
 
             if (diameter == null) {
@@ -123,7 +125,7 @@ public class WatchSpecification {
         };
     }
 
-    public static Specification<Watch> caseThicknessGreaterThanEqual(Double caseThickness) {
+    public static Specification<Watch> caseThicknessGreaterThanEqual(BigDecimal caseThickness) {
         return (root, query, cb) -> {
 
             if (caseThickness == null) {
@@ -134,7 +136,7 @@ public class WatchSpecification {
         };
     }
 
-    public static Specification<Watch> caseThicknessLessThanEqual(Double caseThickness) {
+    public static Specification<Watch> caseThicknessLessThanEqual(BigDecimal caseThickness) {
         return (root, query, cb) -> {
 
             if (caseThickness == null) {
@@ -145,7 +147,7 @@ public class WatchSpecification {
         };
     }
 
-    public static Specification<Watch> bandWidthGreaterThanEqual(Double bandWidth) {
+    public static Specification<Watch> bandWidthGreaterThanEqual(BigDecimal bandWidth) {
         return (root, query, cb) -> {
 
             if (bandWidth == null) {
@@ -156,7 +158,7 @@ public class WatchSpecification {
         };
     }
 
-    public static Specification<Watch> bandWidthLessThanEqual(Double bandWidth) {
+    public static Specification<Watch> bandWidthLessThanEqual(BigDecimal bandWidth) {
         return (root, query, cb) -> {
 
             if (bandWidth == null) {
