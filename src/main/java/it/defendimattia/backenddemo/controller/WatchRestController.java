@@ -13,6 +13,7 @@ import it.defendimattia.backenddemo.model.Watch;
 import it.defendimattia.backenddemo.service.WatchService;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -67,6 +68,14 @@ public class WatchRestController {
         Watch savedWatch = watchService.addWatch(watch);
 
         return new ResponseEntity<>(savedWatch, HttpStatus.CREATED);
+    }
+
+    @PatchMapping
+    public ResponseEntity<Watch> updateWatchPartial(@RequestBody Watch watch) {
+
+        Watch updatedWatch = watchService.updateWatch(watch);
+        
+        return ResponseEntity.ok(updatedWatch);
     }
 
 }
