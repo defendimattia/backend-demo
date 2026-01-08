@@ -72,4 +72,13 @@ public class WatchService {
         return watchRepo.findAll(spec);
     }
 
+    public Watch addWatch(Watch watch) {
+        if (watch.getId() != null && watchRepo.existsById(watch.getId())) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT,
+                    "Watch with id " + watch.getId() + " already exists");
+        }
+        
+        return watchRepo.save(watch);
+    }
+
 }
