@@ -6,8 +6,24 @@ import org.springframework.data.jpa.domain.Specification;
 
 import it.defendimattia.backenddemo.model.Watch;
 
+/**
+ * Provides JPA {@link Specification} objects to filter {@link Watch} entities
+ * based on different search criteria.
+ *
+ * <p>
+ * Each method returns a Specification that can be combined with others using
+ * {@code and()} / {@code or()} in repository queries. Null parameters are
+ * ignored.
+ * </p>
+ */
 public class WatchSpecification {
 
+    /**
+     * Filters watches whose brand contains the given string (case-insensitive).
+     *
+     * @param brand the brand to filter by
+     * @return a {@link Specification} for brand filtering, or null if brand is null
+     */
     public static Specification<Watch> brandContains(String brand) {
         return (root, query, cb) -> {
 
@@ -21,6 +37,12 @@ public class WatchSpecification {
         };
     }
 
+    /**
+     * Filters watches whose model contains the given string (case-insensitive).
+     *
+     * @param model the model to filter by
+     * @return a {@link Specification} for model filtering, or null if model is null
+     */
     public static Specification<Watch> modelContains(String model) {
         return (root, query, cb) -> {
 
@@ -34,6 +56,9 @@ public class WatchSpecification {
         };
     }
 
+    /**
+     * Filters watches by case material (contains, case-insensitive).
+     */
     public static Specification<Watch> caseMaterialContains(String caseMaterial) {
         return (root, query, cb) -> {
 
@@ -47,6 +72,9 @@ public class WatchSpecification {
         };
     }
 
+    /**
+     * Filters watches by strap material (contains, case-insensitive).
+     */
     public static Specification<Watch> strapMaterialContains(String strapMaterial) {
         return (root, query, cb) -> {
 
@@ -60,6 +88,9 @@ public class WatchSpecification {
         };
     }
 
+    /**
+     * Filters watches by movement type (contains, case-insensitive).
+     */
     public static Specification<Watch> movementTypeContains(String movementType) {
         return (root, query, cb) -> {
 
@@ -72,6 +103,10 @@ public class WatchSpecification {
         };
     }
 
+    /**
+     * Filters watches with water resistance greater than or equal to the given
+     * value.
+     */
     public static Specification<Watch> waterResistanceGreaterThanEqual(Short waterResistance) {
         return (root, query, cb) -> {
 
@@ -83,6 +118,9 @@ public class WatchSpecification {
         };
     }
 
+    /**
+     * Filters watches with case diameter greater than or equal to the given value.
+     */
     public static Specification<Watch> caseDiameterGreaterThanEqual(BigDecimal min) {
         return (root, query, cb) -> {
 
@@ -93,6 +131,9 @@ public class WatchSpecification {
         };
     }
 
+    /**
+     * Filters watches with case diameter less than the given value.
+     */
     public static Specification<Watch> caseDiameterLessThan(BigDecimal max) {
         return (root, query, cb) -> {
 
@@ -103,28 +144,9 @@ public class WatchSpecification {
         };
     }
 
-    public static Specification<Watch> diameterGreaterThanEqual(BigDecimal diameter) {
-        return (root, query, cb) -> {
-
-            if (diameter == null) {
-                return null;
-            }
-
-            return cb.greaterThanOrEqualTo(root.get("diameter"), diameter);
-        };
-    }
-
-    public static Specification<Watch> diameterLessThanEqual(BigDecimal diameter) {
-        return (root, query, cb) -> {
-
-            if (diameter == null) {
-                return null;
-            }
-
-            return cb.lessThanOrEqualTo(root.get("diameter"), diameter);
-        };
-    }
-
+    /**
+     * Filters watches with case thickness greater than or equal to the given value.
+     */
     public static Specification<Watch> caseThicknessGreaterThanEqual(BigDecimal caseThickness) {
         return (root, query, cb) -> {
 
@@ -136,6 +158,9 @@ public class WatchSpecification {
         };
     }
 
+    /**
+     * Filters watches with case thickness less than or equal to the given value.
+     */
     public static Specification<Watch> caseThicknessLessThanEqual(BigDecimal caseThickness) {
         return (root, query, cb) -> {
 
@@ -147,6 +172,9 @@ public class WatchSpecification {
         };
     }
 
+    /**
+     * Filters watches with band width greater than or equal to the given value.
+     */
     public static Specification<Watch> bandWidthGreaterThanEqual(BigDecimal bandWidth) {
         return (root, query, cb) -> {
 
@@ -158,6 +186,9 @@ public class WatchSpecification {
         };
     }
 
+    /**
+     * Filters watches with band width less than or equal to the given value.
+     */
     public static Specification<Watch> bandWidthLessThanEqual(BigDecimal bandWidth) {
         return (root, query, cb) -> {
 
@@ -169,6 +200,9 @@ public class WatchSpecification {
         };
     }
 
+    /**
+     * Filters watches by dial color (contains, case-insensitive).
+     */
     public static Specification<Watch> dialColorContains(String dialColor) {
         return (root, query, cb) -> {
 
@@ -182,6 +216,9 @@ public class WatchSpecification {
         };
     }
 
+    /**
+     * Filters watches by crystal material (contains, case-insensitive).
+     */
     public static Specification<Watch> crystalMaterialContains(String crystalMaterial) {
         return (root, query, cb) -> {
 
@@ -195,6 +232,9 @@ public class WatchSpecification {
         };
     }
 
+    /**
+     * Filters watches by complications (contains, case-insensitive).
+     */
     public static Specification<Watch> complicationsContains(String complications) {
         return (root, query, cb) -> {
 
@@ -208,6 +248,9 @@ public class WatchSpecification {
         };
     }
 
+    /**
+     * Filters watches with power reserve greater than or equal to the given value.
+     */
     public static Specification<Watch> powerReserveGreaterThanEqual(Short powerReserve) {
         return (root, query, cb) -> {
 
@@ -219,6 +262,9 @@ public class WatchSpecification {
         };
     }
 
+    /**
+     * Filters watches with price less than or equal to the given value.
+     */
     public static Specification<Watch> priceLessThanEqual(Integer price) {
         return (root, query, cb) -> {
 
