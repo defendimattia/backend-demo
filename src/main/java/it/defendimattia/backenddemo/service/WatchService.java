@@ -13,21 +13,66 @@ import it.defendimattia.backenddemo.model.Watch;
 import it.defendimattia.backenddemo.repository.WatchRepository;
 import it.defendimattia.backenddemo.specification.WatchSpecification;
 
+/**
+ * Service layer for managing luxury watches.
+ * 
+ * <p>
+ * Provides operations for CRUD (Create, Read, Update, Delete) and search
+ * functionality.
+ * Handles business logic and validation related to watches.
+ * </p>
+ */
 @Service
 public class WatchService {
 
     @Autowired
     private WatchRepository watchRepo;
 
+    /**
+     * Retrieves all watches.
+     * 
+     * @return a list of all {@link Watch} entities
+     */
     public List<Watch> getAllWatches() {
         return watchRepo.findAll();
     }
 
+    /**
+     * Retrieves a single watch by its unique identifier (ID).
+     * 
+     * @param id the indentifier of the watch
+     * @return the {@link Watch} with the given id
+     * @throws ResponseStatusException if no watch with the given id exists (HTTP
+     *                                 404)
+     */
     public Watch getWatchById(Integer id) {
         return watchRepo.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Watch not found with id " + id));
     }
 
+    /**
+     * Searches for watches matching the provided criteria.
+     *
+     * <p>
+     * Each parameter is optional; null values are ignored in the search.
+     * </p>
+     *
+     * @param brand           the brand name to search for
+     * @param model           the model name to search for
+     * @param caseMaterial    the case material
+     * @param strapMaterial   the strap material
+     * @param movementType    the type of movement
+     * @param waterResistance minimum water resistance in meters
+     * @param caseDiameter    case diameter in millimeters
+     * @param caseThickness   case thickness in millimeters
+     * @param bandWidth       band width in millimeters
+     * @param dialColor       dial color
+     * @param crystalMaterial crystal material
+     * @param complications   complications of the watch
+     * @param powerReserve    minimum power reserve in hours
+     * @param maxPrice        maximum price in USD
+     * @return a list of {@link Watch} entities matching the criteria
+     */
     public List<Watch> search(String brand,
             String model,
             String caseMaterial,
@@ -65,6 +110,14 @@ public class WatchService {
         return watchRepo.findAll(spec);
     }
 
+    /**
+     * Adds a new watch to the repository.
+     *
+     * @param watch the {@link Watch} to add
+     * @return the saved {@link Watch} entity
+     * @throws ResponseStatusException if a watch with the same id already exists
+     *                                 (HTTP 409)
+     */
     public Watch addWatch(Watch watch) {
 
         if (watch.getId() != null && watchRepo.existsById(watch.getId())) {
@@ -75,6 +128,15 @@ public class WatchService {
         return watchRepo.save(watch);
     }
 
+    /**
+     * Updates an existing watch. Only non-null fields in the given {@link Watch}
+     * will be updated.
+     *
+     * @param watch the watch with updated data
+     * @return the updated {@link Watch} entity
+     * @throws ResponseStatusException if the watch ID is null (HTTP 400)
+     *                                 or if the watch does not exist (HTTP 404)
+     */
     public Watch updateWatch(Watch watch) {
 
         if (watch.getId() == null) {
@@ -117,6 +179,13 @@ public class WatchService {
         return watchRepo.save(existing);
     }
 
+    /**
+     * Deletes a watch by its ID.
+     *
+     * @param id the identifier of the watch to delete
+     * @throws ResponseStatusException if no watch with the given id exists (HTTP
+     *                                 404)
+     */
     public void deleteWatch(Integer id) {
 
         Watch existing = watchRepo.findById(id)
