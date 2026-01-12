@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import it.defendimattia.backenddemo.model.Watch;
 import it.defendimattia.backenddemo.service.WatchService;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -74,8 +75,16 @@ public class WatchRestController {
     public ResponseEntity<Watch> updateWatchPartial(@RequestBody Watch watch) {
 
         Watch updatedWatch = watchService.updateWatch(watch);
-        
+
         return ResponseEntity.ok(updatedWatch);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Watch> deleteWatch(@PathVariable Integer id) {
+
+        watchService.deleteWatch(id);
+
+        return ResponseEntity.noContent().build();
     }
 
 }

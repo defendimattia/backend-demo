@@ -117,4 +117,13 @@ public class WatchService {
         return watchRepo.save(existing);
     }
 
+    public void deleteWatch(Integer id) {
+
+        Watch existing = watchRepo.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND, "Watch not found with id " + id));
+
+        watchRepo.delete(existing);
+    }
+
 }
