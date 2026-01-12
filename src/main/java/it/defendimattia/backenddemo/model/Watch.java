@@ -14,6 +14,16 @@ import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
 
+/**
+ * Entity that represents a luxury watch.
+ * 
+ * <p>
+ * Maps the table {@code luxury_watches} and contains the main characteristics
+ * of a
+ * single watch.
+ * </p>
+ * 
+ */
 @Entity
 @Table(name = "luxury_watches")
 public class Watch {
@@ -32,53 +42,89 @@ public class Watch {
     @Column(name = "\"Model\"")
     private String model;
 
+    /**
+     * Case material type.
+     */
     @Size(max = 250, message = "case material must be max 250 characters long")
     @Column(name = "\"Case Material\"")
     private String caseMaterial;
 
+    /**
+     * Strap material type.
+     */
     @Size(max = 250, message = "strap material must be max 250 characters long")
     @Column(name = "\"Strap Material\"")
     private String strapMaterial;
 
+    /**
+     * Movement type.
+     */
     @Size(max = 250, message = "movement type must be max 250 characters long")
     @Column(name = "\"Movement Type\"")
     private String movementType;
 
+    /**
+     * Water resistance expressed in meters.
+     */
     @PositiveOrZero
     @Column(name = "\"Water Resistance (meters)\"")
     private Short waterResistance;
 
+    /**
+     * Case diameter expressed in millimeters.
+     */
     @Positive(message = "case diameter must be greater than 0")
     @Digits(integer = 2, fraction = 1)
     @Column(name = "\"Case Diameter (mm)\"")
     private BigDecimal caseDiameter;
 
+    /**
+     * Case thickness expressed in millimeters.
+     */
     @Positive(message = "case thickness must be greater than 0")
     @Digits(integer = 2, fraction = 2)
     @Column(name = "\"Case Thickness (mm)\"")
     private BigDecimal caseThickness;
 
+    /**
+     * Band width expressed in millimeters.
+     */
     @Positive(message = "band width must be greater than 0")
     @Digits(integer = 2, fraction = 0)
     @Column(name = "\"Band Width (mm)\"")
     private BigDecimal bandWidth;
 
+    /**
+     * Color of the dial.
+     */
     @Size(max = 250, message = "dial color must be max 250 characters long")
     @Column(name = "\"Dial Color\"")
     private String dialColor;
 
+    /**
+     * Crystal material type.
+     */
     @Size(max = 250, message = "crystal material must be max 250 characters long")
     @Column(name = "\"Crystal Material\"")
     private String crystalMaterial;
 
+    /**
+     * Complications featured by the watch.
+     */
     @Size(max = 400, message = "complications must be max 400 characters long")
     @Column(name = "\"Complications\"")
     private String complications;
 
+    /**
+     * Power reserve of the watch expressed in hours.
+     */
     @Positive
     @Column(name = "\"Power Reserve (hours)\"")
     private Short powerReserve;
 
+    /**
+     * Price of the watch expressed in USD.
+     */
     @Positive
     @Column(name = "\"Price (USD)\"")
     private Integer price;
