@@ -52,10 +52,7 @@ public class WatchService {
      */
     public Watch getWatchById(Integer id) {
         return watchRepo.findById(id)
-                .orElseThrow(() -> {
-                    logger.warn("Watch not found with ID: {}", id);
-                    return new ResponseStatusException(HttpStatus.NOT_FOUND, "Watch not found with id " + id);
-                });
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Watch not found with id " + id));
     }
 
     /**
@@ -128,8 +125,6 @@ public class WatchService {
      */
     public Watch addWatch(Watch watch) {
         if (watch.getId() != null && watchRepo.existsById(watch.getId())) {
-            logger.warn("Attempt to create duplicate watch with ID: {}", watch.getId());
-
             throw new ResponseStatusException(HttpStatus.CONFLICT,
                     "Watch with id " + watch.getId() + " already exists");
         }
@@ -153,16 +148,12 @@ public class WatchService {
      */
     public Watch updateWatch(Watch watch) {
         if (watch.getId() == null) {
-            logger.warn("Update attempt without ID");
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "ID is required to update a watch");
         }
 
         Watch existing = watchRepo.findById(watch.getId())
-                .orElseThrow(() -> {
-                    logger.warn("Update failed - watch not found with ID: {}", watch.getId());
-                    return new ResponseStatusException(
-                            HttpStatus.NOT_FOUND, "Watch not found with id " + watch.getId());
-                });
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+                        "Watch not found with id " + watch.getId()));
 
         boolean changed = false;
 
@@ -236,12 +227,12 @@ public class WatchService {
             changed = true;
         }
 
-        watchRepo.save(existing);
+        Watch saved = watchRepo.save(existing);
 
         if (changed) {
-            logger.info("Updated watch ID: {}", watch.getId());
+            logger.info("Updated watch ID: {}", saved.getId());
         } else {
-            logger.info("Update called but no changes applied for watch ID: {}", watch.getId());
+            logger.info("Update called but no changes applied for watch ID: {}", saved.getId());
         }
 
         return existing;
@@ -256,12 +247,7 @@ public class WatchService {
      */
     public void deleteWatch(Integer id) {
         Watch existing = watchRepo.findById(id)
-                .orElseThrow(() -> {
-                    logger.warn("Delete failed - watch not found with ID: {}", id);
-                    return new ResponseStatusException(
-                            HttpStatus.NOT_FOUND,
-                            "Watch not found with id " + id);
-                });
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Watch not found with id " + id));
 
         watchRepo.delete(existing);
 
