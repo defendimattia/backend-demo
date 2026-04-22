@@ -40,11 +40,11 @@ public class WatchRestController {
     /**
      * Retrieves all watches.
      *
-     * @return a list of all {@link Watch} entities
+     * @return a list of watch data as {@link WatchResponseDTO}
      * @response 200 OK if the request is successful
      */
     @GetMapping
-    public List<Watch> index() {
+    public List<WatchResponseDTO> index() {
         return watchService.getAllWatches();
     }
 

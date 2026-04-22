@@ -64,11 +64,14 @@ public class WatchService {
 
     /**
      * Retrieves all watches.
-     * 
-     * @return a list of all {@link Watch} entities
+     *
+     * @return a list of watch data as {@link WatchResponseDTO}
      */
-    public List<Watch> getAllWatches() {
-        return watchRepo.findAll();
+    public List<WatchResponseDTO> getAllWatches() {
+        return watchRepo.findAll()
+                .stream()
+                .map(this::mapToDTO)
+                .toList();
     }
 
     /**
