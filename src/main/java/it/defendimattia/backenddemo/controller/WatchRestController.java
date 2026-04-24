@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import it.defendimattia.backenddemo.dto.WatchCreateDTO;
 import it.defendimattia.backenddemo.dto.WatchResponseDTO;
+import it.defendimattia.backenddemo.dto.WatchUpdateDTO;
 import it.defendimattia.backenddemo.model.Watch;
 import it.defendimattia.backenddemo.service.WatchService;
 
@@ -134,16 +135,16 @@ public class WatchRestController {
      * Only non-null fields in the request body are updated.
      * </p>
      *
-     * @param watch the {@link Watch} entity with updated data
-     * @return the updated {@link Watch} entity
+     * @param dto the {@link WatchUpdateDTO} containing updated fields
+     * @return the updated {@link WatchResponseDTO}
      * @response 200 OK if successfully updated
      * @response 400 BAD REQUEST if the ID is missing
      * @response 404 NOT FOUND if the watch does not exist
      */
     @PatchMapping
-    public ResponseEntity<Watch> updateWatchPartial(@RequestBody Watch watch) {
+    public ResponseEntity<WatchResponseDTO> updateWatchPartial(@RequestBody WatchUpdateDTO dto) {
 
-        Watch updatedWatch = watchService.updateWatch(watch);
+        WatchResponseDTO updatedWatch = watchService.updateWatch(dto);
 
         return ResponseEntity.ok(updatedWatch);
     }

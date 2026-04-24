@@ -11,6 +11,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import it.defendimattia.backenddemo.dto.WatchCreateDTO;
 import it.defendimattia.backenddemo.dto.WatchResponseDTO;
+import it.defendimattia.backenddemo.dto.WatchUpdateDTO;
 import it.defendimattia.backenddemo.model.Watch;
 import it.defendimattia.backenddemo.repository.WatchRepository;
 import it.defendimattia.backenddemo.specification.WatchSpecification;
@@ -160,7 +161,8 @@ public class WatchService {
      *
      * @param dto the data used to create the watch
      * @return the created watch as {@link WatchResponseDTO}
-     * @throws ResponseStatusException if a watch with the same id already exists (HTTP 409)
+     * @throws ResponseStatusException if a watch with the same id already exists
+     *                                 (HTTP 409)
      */
     public WatchResponseDTO addWatch(WatchCreateDTO dto) {
 
@@ -195,104 +197,105 @@ public class WatchService {
     }
 
     /**
-     * Updates an existing watch. Only non-null fields in the given {@link Watch}
-     * will be updated.
+     * Updates an existing watch. Only non-null fields in the given
+     * {@link WatchUpdateDTO}
+     * will be applied.
      *
-     * @param watch the watch with updated data
-     * @return the updated {@link Watch} entity
+     * @param dto the DTO containing updated data
+     * @return the updated {@link WatchResponseDTO}
      * @throws ResponseStatusException if the watch ID is null (HTTP 400)
      *                                 or if the watch does not exist (HTTP 404)
      */
-    public Watch updateWatch(Watch watch) {
-        if (watch.getId() == null) {
+    public WatchResponseDTO updateWatch(WatchUpdateDTO dto) {
+        if (dto.getId() == null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "ID is required to update a watch");
         }
 
-        Watch existing = watchRepo.findById(watch.getId())
+        Watch existing = watchRepo.findById(dto.getId())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
-                        "Watch not found with id " + watch.getId()));
+                        "Watch not found with id " + dto.getId()));
 
         boolean changed = false;
 
-        if (watch.getBrand() != null) {
-            existing.setBrand(watch.getBrand());
+        if (dto.getBrand() != null) {
+            existing.setBrand(dto.getBrand());
             changed = true;
         }
 
-        if (watch.getModel() != null) {
-            existing.setModel(watch.getModel());
+        if (dto.getModel() != null) {
+            existing.setModel(dto.getModel());
             changed = true;
         }
 
-        if (watch.getCaseMaterial() != null) {
-            existing.setCaseMaterial(watch.getCaseMaterial());
+        if (dto.getCaseMaterial() != null) {
+            existing.setCaseMaterial(dto.getCaseMaterial());
             changed = true;
         }
 
-        if (watch.getStrapMaterial() != null) {
-            existing.setStrapMaterial(watch.getStrapMaterial());
+        if (dto.getStrapMaterial() != null) {
+            existing.setStrapMaterial(dto.getStrapMaterial());
             changed = true;
         }
 
-        if (watch.getMovementType() != null) {
-            existing.setMovementType(watch.getMovementType());
+        if (dto.getMovementType() != null) {
+            existing.setMovementType(dto.getMovementType());
             changed = true;
         }
 
-        if (watch.getWaterResistance() != null) {
-            existing.setWaterResistance(watch.getWaterResistance());
+        if (dto.getWaterResistance() != null) {
+            existing.setWaterResistance(dto.getWaterResistance());
             changed = true;
         }
 
-        if (watch.getCaseDiameter() != null) {
-            existing.setCaseDiameter(watch.getCaseDiameter());
+        if (dto.getCaseDiameter() != null) {
+            existing.setCaseDiameter(dto.getCaseDiameter());
             changed = true;
         }
 
-        if (watch.getCaseThickness() != null) {
-            existing.setCaseThickness(watch.getCaseThickness());
+        if (dto.getCaseThickness() != null) {
+            existing.setCaseThickness(dto.getCaseThickness());
             changed = true;
         }
 
-        if (watch.getBandWidth() != null) {
-            existing.setBandWidth(watch.getBandWidth());
+        if (dto.getBandWidth() != null) {
+            existing.setBandWidth(dto.getBandWidth());
             changed = true;
         }
 
-        if (watch.getDialColor() != null) {
-            existing.setDialColor(watch.getDialColor());
+        if (dto.getDialColor() != null) {
+            existing.setDialColor(dto.getDialColor());
             changed = true;
         }
 
-        if (watch.getCrystalMaterial() != null) {
-            existing.setCrystalMaterial(watch.getCrystalMaterial());
+        if (dto.getCrystalMaterial() != null) {
+            existing.setCrystalMaterial(dto.getCrystalMaterial());
             changed = true;
         }
 
-        if (watch.getComplications() != null) {
-            existing.setComplications(watch.getComplications());
+        if (dto.getComplications() != null) {
+            existing.setComplications(dto.getComplications());
             changed = true;
         }
 
-        if (watch.getPowerReserve() != null) {
-            existing.setPowerReserve(watch.getPowerReserve());
+        if (dto.getPowerReserve() != null) {
+            existing.setPowerReserve(dto.getPowerReserve());
             changed = true;
         }
 
-        if (watch.getPrice() != null) {
-            existing.setPrice(watch.getPrice());
+        if (dto.getPrice() != null) {
+            existing.setPrice(dto.getPrice());
             changed = true;
         }
 
-        Watch saved = watchRepo.save(existing);
+        watchRepo.save(existing);
 
         if (changed) {
-            logger.info("Updated watch ID: {}", saved.getId());
+            logger.info("Updated watch ID: {}", dto.getId());
         } else {
-            logger.info("Update called but no changes applied for watch ID: {}", saved.getId());
+            logger.info("Update called but no changes applied for watch ID: {}", dto.getId());
         }
 
-        return existing;
+        return mapToDTO(existing);
     }
 
     /**
