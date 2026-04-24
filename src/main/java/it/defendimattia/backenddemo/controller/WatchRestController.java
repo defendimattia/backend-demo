@@ -14,6 +14,7 @@ import it.defendimattia.backenddemo.dto.WatchResponseDTO;
 import it.defendimattia.backenddemo.dto.WatchUpdateDTO;
 import it.defendimattia.backenddemo.model.Watch;
 import it.defendimattia.backenddemo.service.WatchService;
+import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -121,7 +122,7 @@ public class WatchRestController {
      * @response 409 CONFLICT if a watch with the same ID already exists
      */
     @PostMapping
-    public ResponseEntity<WatchResponseDTO> createWatch(@RequestBody WatchCreateDTO watch) {
+    public ResponseEntity<WatchResponseDTO> createWatch(@Valid @RequestBody WatchCreateDTO watch) {
 
         WatchResponseDTO savedWatch = watchService.addWatch(watch);
 
@@ -142,7 +143,7 @@ public class WatchRestController {
      * @response 404 NOT FOUND if the watch does not exist
      */
     @PatchMapping
-    public ResponseEntity<WatchResponseDTO> updateWatchPartial(@RequestBody WatchUpdateDTO dto) {
+    public ResponseEntity<WatchResponseDTO> updateWatchPartial(@Valid @RequestBody WatchUpdateDTO dto) {
 
         WatchResponseDTO updatedWatch = watchService.updateWatch(dto);
 
