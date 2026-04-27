@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,21 +18,21 @@ public class GlobalExceptionHandler {
     private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
     @ExceptionHandler(ResponseStatusException.class)
-    public ResponseEntity<Map<String, Object>> handleResponseStatusException(ResponseStatusException ex) {
+    public ResponseEntity<ErrorResponse> handleResponseStatusException(ResponseStatusException ex) {
 
         logger.warn("Handled exception: {} - {}", ex.getStatusCode(), ex.getReason());
 
-        Map<String, Object> body = Map.of(
-                "timestamp", LocalDateTime.now(),
-                "status", ex.getStatusCode().value(),
-                "error", ex.getStatusCode().toString(),
-                "message", ex.getReason());
+        ErrorResponse response = new ErrorResponse(
+                ex.getStatusCode().value(),
+                ex.getStatusCode().toString(),
+                ex.getReason(),
+                null);
 
-        return new ResponseEntity<>(body, (HttpStatus) ex.getStatusCode());
+        return new ResponseEntity<>(response, (HttpStatus) ex.getStatusCode());
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<Map<String, Object>> handleValidationException(MethodArgumentNotValidException ex) {
+    public ResponseEntity<ErrorResponse> handleValidationException(MethodArgumentNotValidException ex) {
 
         Map<String, String> errors = new HashMap<>();
 
@@ -43,11 +42,12 @@ public class GlobalExceptionHandler {
 
         logger.debug("Validation failed with {} errors", errors.size());
 
-        Map<String, Object> body = Map.of(
-                "timestamp", LocalDateTime.now(),
-                "status", 400,
-                "errors", errors);
+        ErrorResponse response = new ErrorResponse(
+                400,
+                "BAD_REQUEST",
+                "Validation failed",
+                errors);
 
-        return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 }
